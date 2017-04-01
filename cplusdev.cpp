@@ -1,6 +1,9 @@
+/* C++ practice 2017*/
+
 #include <stdio.h>
 #include <math.h>
 
+using namespace std;
 typedef struct modulation {
    char* QPSK;
    int q;
@@ -8,8 +11,7 @@ typedef struct modulation {
 
 int main(){
 
-
-printf("Hello Emacs World!\n");
+//printf("Hello Emacs World!\n");
 int x[]= {1,2,3,4,5};
 int y = x[2];
 printf("y = %d \n", y);
