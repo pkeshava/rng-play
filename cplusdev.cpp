@@ -1,16 +1,16 @@
 /* C++ practice 2017*/
 
-#include <stdio.h>
-#include <math.h>
-#include "typedefinitions.h"
-
-//using namespace std;
+#include "config.h"
 
 int main(){
 
-u32 boyz = 5;
-printf("U32 test is %lu \n", boyz);
+  cprint();
+  cplusprint();
+  //u32 u32test = 0x0000FFFF;
+  //printf("Test unsigned long is: %lu\n", u32test);
 
+
+return 0;
 }
 
 /*------ sample code -----------------
