@@ -62,3 +62,19 @@ void printBits(uc64 size, void const * const ptr)
     puts("");
 
 }
+
+void verifyBits()
+{
+  // std::ifstream input("bitstream.txt", std::ios::binary );
+  // std::vector<unsigned char> buffer((std::istreambuf_iterator<char>(input)),std::istreambuf_iterator<char>());
+
+  std::vector<char> buffer;
+  std::ifstream file("bitstream.txt");
+  std::copy(std::istream_iterator<char>(file), std::istream_iterator<char>(), std::back_inserter(buffer));
+
+  for (std::vector<char>::const_iterator i = buffer.begin(); i != buffer.end(); ++i)
+    std::cout << *i << ' ';
+
+  //std::ifstream input( "bitstream.txt", std::ios::binary );
+
+}
