@@ -29,11 +29,11 @@ void cplusprint(void) {
 }
 
 //assumes little endian
-void printBits(u32 size, void const * const ptr)
+void printBits(sc32 size, void const * const ptr)
 {
-    unsigned char *b = (unsigned char*) ptr;
-    unsigned char byte;
-    int i, j;
+    u8 *b = (u8*) ptr;
+    u8 byte;
+    s32 i, j;
 
     for (i=size-1;i>=0;i--)
     {

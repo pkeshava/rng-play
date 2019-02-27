@@ -37,7 +37,7 @@ typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
 
 void cprint(void);
 void cplusprint(void);
-void printBits(u32 size, void const * const ptr);//assumes little endian
+void printBits(sc32 size, void const * const ptr);//assumes little endian
 
 
 #endif                              // typedefinitions.h
