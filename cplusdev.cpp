@@ -10,10 +10,9 @@ int main(){
 
 
 
-  s32 s32seed = rand();
-  printf("Test random number as an integer: %lu\n", s32seed);
-  printBits(sizeof(s32seed), &s32seed);
-
+  u64 u64seed = rand();
+  //printf("Test random number as an integer: %lu\n", s16seed);
+  printBits(sizeof(u64seed), &u64seed);
 
 return 0;
 }

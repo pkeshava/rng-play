@@ -9,19 +9,19 @@ typedef long LONG;                   // Signed 32 bit
 typedef unsigned long ULONG;         // unsigned 32 bit
 typedef bool BOOL;                   // BOOLEAN VALUE!!!!
 
-typedef long s32;
+typedef long s64;
 typedef short s16;
 typedef signed char  s8;
 
-typedef const long sc32;            // Read Only
+typedef const long sc64;            // Read Only
 typedef const short sc16;           // Read Only
 typedef const char sc8;             // Read Only
 
-typedef ULONG  u32;                 // Read Only
+typedef ULONG  u64;                 // Read Only
 typedef USHORT u16;                 // Read Only
 typedef UCHAR  u8;                  // Read Only
 
-typedef const ULONG uc32;           // Read Only
+typedef const ULONG uc64;           // Read Only
 typedef const USHORT uc16;          // Read Only
 typedef const USHORT uc8;           // Read Only
 
@@ -37,7 +37,7 @@ typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
 
 void cprint(void);
 void cplusprint(void);
-void printBits(sc32 size, void const * const ptr);//assumes little endian
+void printBits(uc64 size, void const * const ptr);//assumes little endian
 
 
 #endif                              // typedefinitions.h
