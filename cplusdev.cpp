@@ -8,11 +8,11 @@ This code is used as a first step dive into the world of true random number gene
 
 int main(){
 
-
-
-  u64 u64seed = rand();
+  u64 seed = 5;
+  srand(seed);
+  u64 u64rand = rand();
   //printf("Test random number as an integer: %lu\n", s16seed);
-  printBits(sizeof(u64seed), &u64seed);
+  printBits(sizeof(u64rand), &u64rand);
 
 return 0;
 }
