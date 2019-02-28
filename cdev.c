@@ -15,7 +15,7 @@ int main(){
   srand((unsigned int) time (NULL));
 
   unsigned char* bstream;
-  size_t nBytes = 70;
+  size_t nBytes = 9;
   bstream = gen_rdm_bytestream(nBytes);
 ////
   //writeToFile(bstream);
