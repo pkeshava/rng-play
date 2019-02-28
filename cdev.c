@@ -10,12 +10,12 @@ This code is used as a first step dive into the world of true random number gene
 
 int main(){
 
-  //int seed = 1342;
+  //int seed = 238;
   //srand(seed);
   srand((unsigned int) time (NULL));
 
   unsigned char* bstream;
-  size_t nBytes = 17;
+  size_t nBytes = 70;
   bstream = gen_rdm_bytestream(nBytes);
 //
   //writeToFile(bstream);
