@@ -5,15 +5,30 @@ This code is used as a first step dive into the world of true random number gene
 */
 
 #include "config.h"
+#include <stdlib.h>
+#include <time.h>
 
 int main(){
 
-  u64 seed = 12;
+  u64 seed = 5556;
   srand(seed);
   u64 u64rand = rand();
-  //printf("Test random number as an integer: %lu\n", s16seed);
-  printBits(sizeof(u64rand), &u64rand);
+  int intrand = rand();
+  int *rand_p = &intrand;
+  printf("Test random number as an integer: %ld\n", u64rand);
+  cout << intrand << endl;
+  cout << u64rand << endl;
+  printBits(sizeof(intrand), &rand_p);
+
+  // open file and clear it's contents
+  std::ofstream myfile;
+  myfile.open("bitstream.txt", std::ofstream::out | std::ofstream::trunc);
+  myfile.write(reinterpret_cast<char*>(&u64rand),sizeof(u64rand));
+  myfile.close();
+
   verifyBits();
+
+  srand((unsigned int) time (NULL));
 
 
 return 0;

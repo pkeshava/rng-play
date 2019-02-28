@@ -5,6 +5,7 @@
 //using namespace std;
 
 #include "config.h"
+#include <stdlib.h>
 
 void cprint(void){
 
@@ -29,17 +30,11 @@ void cplusprint(void) {
 }
 
 //assumes little endian
-void printBits(uc64 size, void const * const ptr)
+void printBits(int size, void const * const ptr)
 {
     u8 *b = (u8*) ptr;
     char byte[8];
     int i, j;
-    int output[8];
-
-    // open file and clear it's contents
-    std::ofstream myfile;
-    myfile.open("bitstream.txt", std::ofstream::out | std::ofstream::trunc);
-    myfile.close();
 
     for (i=size-1;i>=0;i--)
     {
@@ -47,15 +42,18 @@ void printBits(uc64 size, void const * const ptr)
         {
             byte[j] = (b[i] >> j) & 1;
             printf("%u", byte[j]);
-            myfile.open ("bitstream.txt",std::ios_base::app);
-            if( !myfile )
-                cout << "Opening file failed" << endl;
-            // use operator<< for clarity
-            myfile << b;
-            // test if write was succesful - not *really* necessary
-            if( !myfile )
-                cout << "Write failed" << endl;
-            myfile.close();
+            // myfile.open ("bitstream.txt",std::ios_base::app);
+            // if( !myfile )
+            //     cout << "Opening file failed" << endl;
+            // // use operator<< for clarity
+            // u8 buffer[] = { 'x' , 'y' , 'z' };
+            // //myfile << buffer;
+            // myfile << byte;
+            // // test if write was succesful - not *really* necessary
+            // if( !myfile )
+            //     cout << "Write failed" << endl;
+            // myfile.close();
+
         }
 
     }
@@ -65,8 +63,6 @@ void printBits(uc64 size, void const * const ptr)
 
 void verifyBits()
 {
-  // std::ifstream input("bitstream.txt", std::ios::binary );
-  // std::vector<unsigned char> buffer((std::istreambuf_iterator<char>(input)),std::istreambuf_iterator<char>());
 
   std::vector<char> buffer;
   std::ifstream file("bitstream.txt");
