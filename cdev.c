@@ -10,20 +10,32 @@ This code is used as a first step dive into the world of true random number gene
 
 int main(){
 
-  int seed = 1874;
-  srand(seed);
+  //int seed = 1342;
+  //srand(seed);
   //srand((unsigned int) time (NULL));
 
   unsigned char* bstream;
-  size_t nBytes = 7;
+  size_t nBytes = 4;
   bstream = gen_rdm_bytestream(nBytes);
+//
+  //writeToFile(bstream);
 
-  writeToFile(bstream);
+  FILE *write_ptr;
+  write_ptr = fopen("test.bin","wb");  // w for write, b for binary
+  if (write_ptr == NULL)
+  {
+    perror("Failed: ");
+    return 1;
+  }
+  fwrite(bstream,sizeof(bstream),1,write_ptr);
+  fclose(write_ptr);
+
 
   unsigned char buffer[nBytes];
   FILE *ptr;
   ptr = fopen("test.bin","rb");  // r for read, b for binary
   fread(buffer,sizeof(buffer),1,ptr); // read 10 bytes to our buffer
+  fclose(ptr);
 
   printf("\n");
 

@@ -63,5 +63,5 @@ void writeToFile(unsigned const char* uc8inputBytes)
   bits = uc8inputBytes;
   FILE *write_ptr;
   write_ptr = fopen("test.bin","wb");  // w for write, b for binary
-  fwrite(bits,sizeof(bits),1,write_ptr); // write 10 bytes from our buffer
+  fwrite(bits,sizeof(bits),1,write_ptr); // write bytes from our buffer
 }
