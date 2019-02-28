@@ -10,41 +10,36 @@ This code is used as a first step dive into the world of true random number gene
 
 int main(){
 
-  //int seed = 5556;
+  //int seed = 32;
   //srand(seed);
-//
   srand((unsigned int) time (NULL));
+
   int intrand = rand();
   int *rand_p = &intrand;
-  printBits(sizeof(intrand), &intrand);
+  //printBits(sizeof(intrand), &intrand);
 
   unsigned char* bstream;
-  bstream = gen_rdm_bytestream(10);
-  printf("input: %s\n", bstream);
+  size_t nBytes = 4;
+  bstream = gen_rdm_bytestream(nBytes);
+  //printf("input: %s\n", bstream);
 
-  FILE *write_ptr;
-  write_ptr = fopen("test.bin","wb");  // w for write, b for binary
-  fwrite(bstream,sizeof(bstream),1,write_ptr); // write 10 bytes from our buffer
+  writeToFile(bstream);
 
-  unsigned char buffer[10];
+  unsigned char buffer[nBytes];
   FILE *ptr;
   ptr = fopen("test.bin","rb");  // r for read, b for binary
   fread(buffer,sizeof(buffer),1,ptr); // read 10 bytes to our buffer
 
-  for(int i = 0; i<10; i++)
+  printf("\n");
+
+  for(int i = 0; i<nBytes; i++)
     printf("%u ", buffer[i]); // prints a series of bytes
 
+  printf("\n\n");
   printBits(sizeof(buffer), &buffer);
+  printf("\n\n");
   free(bstream);
-  // open file and clear it's contents
-  // std::ofstream myfile;
-  // myfile.open("bitstream.txt", std::ofstream::out | std::ofstream::trunc);
-  // myfile.write(reinterpret_cast<char*>(&rand_p),sizeof(rand_p));
-  // myfile.close();
 
-  // verifyBits();
-  //
-  // srand((unsigned int) time (NULL));
 
 
 return 0;

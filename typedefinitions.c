@@ -42,17 +42,26 @@ void printBits(int size, void const * const ptr)
 
 }
 
-unsigned char *gen_rdm_bytestream (size_t num_bytes)
+unsigned char *gen_rdm_bytestream (size_t nBytes)
 {
   unsigned char *stream;
-  stream = (char*) malloc (num_bytes + 1);
+  stream = (char*) malloc (nBytes + 1);
   if (stream==NULL) exit (1);
   size_t i;
 
-  for (i = 0; i < num_bytes; i++)
+  for (i = 0; i < nBytes; i++)
   {
     stream[i] = rand ();
   }
 
   return stream;
+}
+
+void writeToFile(unsigned const char* uc8inputBytes)
+{
+  unsigned char* bits;
+  bits = uc8inputBytes;
+  FILE *write_ptr;
+  write_ptr = fopen("test.bin","wb");  // w for write, b for binary
+  fwrite(bits,sizeof(bits),1,write_ptr); // write 10 bytes from our buffer
 }

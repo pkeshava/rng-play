@@ -36,5 +36,7 @@ typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
 
 void cprint(void);
 void printBits(int size, void const * const ptr);//assumes little endian
-unsigned char *gen_rdm_bytestream (size_t num_bytes);
+unsigned char *gen_rdm_bytestream (size_t nBytes);
+void writeToFile(unsigned const char* uc8inputBytes);
+
 #endif                              // typedefinitions.h
