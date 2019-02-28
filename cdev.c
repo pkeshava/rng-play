@@ -17,7 +17,7 @@ int main(){
   unsigned char* bstream;
   size_t nBytes = 70;
   bstream = gen_rdm_bytestream(nBytes);
-//
+////
   //writeToFile(bstream);
 
   FILE *write_ptr;
