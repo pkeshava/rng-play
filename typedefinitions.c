@@ -44,17 +44,18 @@ void printBits(size_t size, void const * const ptr)
 
 unsigned char *gen_rdm_bytestream (size_t nBytes)
 {
-  unsigned char *bstream;
-  bstream = (char*) malloc (nBytes + 1);
-  if (bstream==NULL) exit (1);
+  unsigned char *asciiBstream;
+  asciiBstream = (char*) malloc (nBytes + 1);
+  if (asciiBstream==NULL) exit (1);
   size_t i;
 
   for (i = 0; i < nBytes; i++)
-    bstream[i] = rand()%26 +'a';
-  bstream[nBytes]='\0';
-  printf ("Random string: %s\n",bstream);
+    asciiBstream[i] = rand()%26 +'a';
 
-  return bstream;
+  asciiBstream[nBytes]='\0';
+  printf ("Random string: %s\n",asciiBstream);
+
+  return asciiBstream;
 }
 
 void writeToFile(unsigned const char* uc8inputBytes)

@@ -17,8 +17,10 @@ int main(){
   unsigned char* bstream;
   size_t nBytes = 9;
   bstream = gen_rdm_bytestream(nBytes);
-////
-  //writeToFile(bstream);
+  //printf ("Random string: %s\n",bstream);
+  for(int i = 0; i<nBytes; i++)
+    printf("%u", bstream[i]); // prints a series of bytes
+
 
   FILE *write_ptr;
   write_ptr = fopen("test.bin","wb");  // w for write, b for binary
@@ -27,14 +29,14 @@ int main(){
     perror("Failed: ");
     return 1;
   }
-  fwrite(bstream,sizeof(bstream),1,write_ptr);
+  fwrite(bstream,nBytes,1,write_ptr);
   fclose(write_ptr);
 
 
   unsigned char buffer[nBytes];
   FILE *ptr;
   ptr = fopen("test.bin","rb");  // r for read, b for binary
-  fread(buffer,sizeof(buffer),1,ptr); // read 10 bytes to our buffer
+  fread(buffer,sizeof(buffer),1,ptr);
   fclose(ptr);
 
   printf("\n");
