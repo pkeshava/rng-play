@@ -10,25 +10,24 @@ This code is used as a first step dive into the world of true random number gene
 
 int main(){
 
-  u64 seed = 5556;
+  int seed = 5556;
   srand(seed);
-  u64 u64rand = rand();
   int intrand = rand();
   int *rand_p = &intrand;
-  printf("Test random number as an integer: %ld\n", u64rand);
   cout << intrand << endl;
-  cout << u64rand << endl;
-  printBits(sizeof(intrand), &rand_p);
+  printBits(sizeof(intrand), &intrand);
+  cout << intrand << endl;
+
 
   // open file and clear it's contents
-  std::ofstream myfile;
-  myfile.open("bitstream.txt", std::ofstream::out | std::ofstream::trunc);
-  myfile.write(reinterpret_cast<char*>(&u64rand),sizeof(u64rand));
-  myfile.close();
+  // std::ofstream myfile;
+  // myfile.open("bitstream.txt", std::ofstream::out | std::ofstream::trunc);
+  // myfile.write(reinterpret_cast<char*>(&rand_p),sizeof(rand_p));
+  // myfile.close();
 
-  verifyBits();
-
-  srand((unsigned int) time (NULL));
+  // verifyBits();
+  //
+  // srand((unsigned int) time (NULL));
 
 
 return 0;
