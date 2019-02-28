@@ -23,7 +23,7 @@ void cprint(void){
 
 
 //assumes little endian
-void printBits(int size, void const * const ptr)
+void printBits(size_t size, void const * const ptr)
 {
     u8 *b = (u8*) ptr;
     char byte[8];
@@ -44,17 +44,17 @@ void printBits(int size, void const * const ptr)
 
 unsigned char *gen_rdm_bytestream (size_t nBytes)
 {
-  unsigned char *stream;
-  stream = (char*) malloc (nBytes + 1);
-  if (stream==NULL) exit (1);
+  unsigned char *bstream;
+  bstream = (char*) malloc (nBytes + 1);
+  if (bstream==NULL) exit (1);
   size_t i;
 
   for (i = 0; i < nBytes; i++)
-  {
-    stream[i] = rand ();
-  }
+    bstream[i] = rand()%26 +'a';
+  bstream[nBytes]='\0';
+  printf ("Random string: %s\n",bstream);
 
-  return stream;
+  return bstream;
 }
 
 void writeToFile(unsigned const char* uc8inputBytes)

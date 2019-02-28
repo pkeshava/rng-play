@@ -10,12 +10,12 @@ This code is used as a first step dive into the world of true random number gene
 
 int main(){
 
-  int seed = 2342;
+  int seed = 1874;
   srand(seed);
   //srand((unsigned int) time (NULL));
 
   unsigned char* bstream;
-  size_t nBytes = 2;
+  size_t nBytes = 7;
   bstream = gen_rdm_bytestream(nBytes);
 
   writeToFile(bstream);
@@ -36,6 +36,23 @@ int main(){
   free(bstream);
 
 
+
+
+    // int i,n;
+    // char *buf;
+    //
+    // printf ("How long do you want the string? ");
+    // scanf ("%d", &i);
+    //
+    // buf = (char*) malloc (i+1);
+    // if (buf==NULL) exit (1);
+    //
+    // for (n=0; n<i; n++)
+    //   buf[n]=rand()%26 +'a';
+    // buf[i]='\0';
+    //
+    // printf ("Random string: %s\n",buf);
+    // free (buf);
 
 return 0;
 }
