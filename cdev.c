@@ -19,8 +19,22 @@ int main(){
   printBits(sizeof(intrand), &intrand);
 
   unsigned char* bstream;
-  bstream = gen_rdm_bytestream(4);
+  bstream = gen_rdm_bytestream(10);
   printf("input: %s\n", bstream);
+
+  FILE *write_ptr;
+  write_ptr = fopen("test.bin","wb");  // w for write, b for binary
+  fwrite(bstream,sizeof(bstream),1,write_ptr); // write 10 bytes from our buffer
+
+  unsigned char buffer[10];
+  FILE *ptr;
+  ptr = fopen("test.bin","rb");  // r for read, b for binary
+  fread(buffer,sizeof(buffer),1,ptr); // read 10 bytes to our buffer
+
+  for(int i = 0; i<10; i++)
+    printf("%u ", buffer[i]); // prints a series of bytes
+
+
   free(bstream);
   // open file and clear it's contents
   // std::ofstream myfile;
