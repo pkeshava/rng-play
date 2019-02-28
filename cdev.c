@@ -15,28 +15,28 @@ int main(){
   srand((unsigned int) time (NULL));
 
   unsigned char* bstream;
-  size_t nBytes = 9;
+  size_t nBytes = 10;
   bstream = gen_rdm_bytestream(nBytes);
   //printf ("Random string: %s\n",bstream);
   for(int i = 0; i<nBytes; i++)
     printf("%u", bstream[i]); // prints a series of bytes
 
+  // FILE *write_ptr;
+  // write_ptr = fopen("test.bin","wb");  // w for write, b for binary
+  // if (write_ptr == NULL)
+  // {
+  //   perror("Failed: ");
+  //   return 1;
+  // }
+  // fwrite(bstream,nBytes,1,write_ptr);
+  // fclose(write_ptr);
 
-  FILE *write_ptr;
-  write_ptr = fopen("test.bin","wb");  // w for write, b for binary
-  if (write_ptr == NULL)
-  {
-    perror("Failed: ");
-    return 1;
-  }
-  fwrite(bstream,nBytes,1,write_ptr);
-  fclose(write_ptr);
-
+  writeToFile(bstream, nBytes);
 
   unsigned char buffer[nBytes];
   FILE *ptr;
   ptr = fopen("test.bin","rb");  // r for read, b for binary
-  fread(buffer,sizeof(buffer),1,ptr);
+  fread(buffer,nBytes,1,ptr);
   fclose(ptr);
 
   printf("\n");

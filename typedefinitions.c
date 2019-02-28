@@ -58,11 +58,17 @@ unsigned char *gen_rdm_bytestream (size_t nBytes)
   return asciiBstream;
 }
 
-void writeToFile(unsigned const char* uc8inputBytes)
+void writeToFile(unsigned const char* uc8inputBytes, size_t nBytes)
 {
+  size_t size = nBytes;
   unsigned char* bits;
   bits = uc8inputBytes;
   FILE *write_ptr;
   write_ptr = fopen("test.bin","wb");  // w for write, b for binary
-  fwrite(bits,sizeof(bits),1,write_ptr); // write bytes from our buffer
+  if (write_ptr == NULL)
+  {
+    perror("Failed: ");
+  }
+  fwrite(bits,size,1,write_ptr);
+  fclose(write_ptr);
 }
