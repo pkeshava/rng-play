@@ -14,9 +14,7 @@ int main(){
   srand(seed);
   int intrand = rand();
   int *rand_p = &intrand;
-  cout << intrand << endl;
   printBits(sizeof(intrand), &intrand);
-  cout << intrand << endl;
 
 
   // open file and clear it's contents

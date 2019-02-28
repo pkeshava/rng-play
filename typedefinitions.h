@@ -28,20 +28,12 @@ typedef const ULONG uc64;           // Read Only
 typedef const USHORT uc16;          // Read Only
 typedef const USHORT uc8;           // Read Only
 
-// Not sure why this code is here... bool is already a tpye in C++... INVESTIGATE
-// Perhaps just to show that
-#ifndef __cplusplus
-typedef enum {FALSE = 0, TRUE = !FALSE} bool;
-#endif
 // These are not strictly necessary but might be useful
 typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
 typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
 typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
 
 void cprint(void);
-void cplusprint(void);
 void printBits(int size, void const * const ptr);//assumes little endian
-void verifyBits();
-
 
 #endif                              // typedefinitions.h
