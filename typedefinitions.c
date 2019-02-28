@@ -53,12 +53,12 @@ unsigned char *gen_rdm_bytestream (size_t nBytes)
     asciiBstream[i] = rand()%26 +'a';
 
   asciiBstream[nBytes]='\0';
-  printf ("Random string: %s\n",asciiBstream);
+  printf ("Random string: %s\n",asciiBstream); //print ascii letters
 
   return asciiBstream;
 }
 
-void writeToFile(unsigned const char* uc8inputBytes, size_t nBytes)
+void writeToFile(unsigned const char* uc8inputBytes, size_t nBytes)//UPDATE LATER TO RECEIVE FILE POINTER
 {
   size_t size = nBytes;
   unsigned char* bits;
@@ -71,4 +71,18 @@ void writeToFile(unsigned const char* uc8inputBytes, size_t nBytes)
   }
   fwrite(bits,size,1,write_ptr);
   fclose(write_ptr);
+}
+
+unsigned char* readFromFile(size_t nBytes)//UPDATE LATER TO RECEIVE FILE POINTER AND BUFFER SIZE
+{
+  size_t size = nBytes;
+  unsigned char* buffer;
+  buffer = (char*) malloc (nBytes + 1);
+  if (buffer==NULL) exit (1);
+  FILE *ptr;
+  ptr = fopen("test.bin","rb");  // r for read, b for binary
+  fread(buffer,size,1,ptr);
+  buffer[size]='\0';
+  fclose(ptr);
+  return buffer;
 }

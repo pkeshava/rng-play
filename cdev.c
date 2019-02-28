@@ -16,57 +16,28 @@ int main(){
 
   unsigned char* bstream;
   size_t nBytes = 10;
+  printf("\n");
+  // Generate random bits
   bstream = gen_rdm_bytestream(nBytes);
+  printf("\n");
   //printf ("Random string: %s\n",bstream);
   for(int i = 0; i<nBytes; i++)
-    printf("%u", bstream[i]); // prints a series of bytes
-
-  // FILE *write_ptr;
-  // write_ptr = fopen("test.bin","wb");  // w for write, b for binary
-  // if (write_ptr == NULL)
-  // {
-  //   perror("Failed: ");
-  //   return 1;
-  // }
-  // fwrite(bstream,nBytes,1,write_ptr);
-  // fclose(write_ptr);
-
+    printf("%u ", bstream[i]); // prints a series of bytes as ascii characters
+  printf("\n\n");
+  // write to a binary file and then read back to check it was done correctly
   writeToFile(bstream, nBytes);
-
-  unsigned char buffer[nBytes];
-  FILE *ptr;
-  ptr = fopen("test.bin","rb");  // r for read, b for binary
-  fread(buffer,nBytes,1,ptr);
-  fclose(ptr);
-
-  printf("\n");
+  unsigned char* buffer;
+  buffer = readFromFile(nBytes);
 
   for(int i = 0; i<nBytes; i++)
-    printf("%u ", buffer[i]); // prints a series of bytes
+    printf("%u ", buffer[i]); // prints a series of bytes.. this now should print exactly the same as ascii numbers only properly split up
 
   printf("\n\n");
-  printBits(sizeof(buffer), &buffer);
-  printf("\n\n");
+  printBits(nBytes, buffer); // NOTE if this is done without the dynamic memory allocation then you need to have &buffer
+  printf("\n");
   free(bstream);
+  free(buffer);
 
-
-
-
-    // int i,n;
-    // char *buf;
-    //
-    // printf ("How long do you want the string? ");
-    // scanf ("%d", &i);
-    //
-    // buf = (char*) malloc (i+1);
-    // if (buf==NULL) exit (1);
-    //
-    // for (n=0; n<i; n++)
-    //   buf[n]=rand()%26 +'a';
-    // buf[i]='\0';
-    //
-    // printf ("Random string: %s\n",buf);
-    // free (buf);
 
 return 0;
 }
