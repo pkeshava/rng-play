@@ -34,7 +34,7 @@ int main(){
   for(int i = 0; i<10; i++)
     printf("%u ", buffer[i]); // prints a series of bytes
 
-
+  printBits(sizeof(buffer), &buffer);
   free(bstream);
   // open file and clear it's contents
   // std::ofstream myfile;
