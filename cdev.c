@@ -12,10 +12,10 @@ int main(){
 
   //int seed = 1342;
   //srand(seed);
-  //srand((unsigned int) time (NULL));
+  srand((unsigned int) time (NULL));
 
   unsigned char* bstream;
-  size_t nBytes = 12;
+  size_t nBytes = 17;
   bstream = gen_rdm_bytestream(nBytes);
 //
   //writeToFile(bstream);
