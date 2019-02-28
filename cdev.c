@@ -10,18 +10,13 @@ This code is used as a first step dive into the world of true random number gene
 
 int main(){
 
-  //int seed = 32;
-  //srand(seed);
-  srand((unsigned int) time (NULL));
-
-  int intrand = rand();
-  int *rand_p = &intrand;
-  //printBits(sizeof(intrand), &intrand);
+  int seed = 2342;
+  srand(seed);
+  //srand((unsigned int) time (NULL));
 
   unsigned char* bstream;
-  size_t nBytes = 4;
+  size_t nBytes = 2;
   bstream = gen_rdm_bytestream(nBytes);
-  //printf("input: %s\n", bstream);
 
   writeToFile(bstream);
 

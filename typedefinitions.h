@@ -9,15 +9,22 @@ typedef char CHAR;                   // Signed 8 bits
 typedef unsigned char UCHAR;         // Unsigned 8 bits
 typedef short SHORT;                 // Signed 16 bits
 typedef unsigned short USHORT;       // Unsigned 16 bits
-typedef long LONG;                   // Signed 32 bit
-typedef unsigned long ULONG;         // unsigned 32 bit
+typedef long LONG;                   // Signed 64 bit
+typedef unsigned long ULONG;         // unsigned 64 bit
+typedef int SINT;                    // signed 32 bit
+typedef unsigned int UINT;           // unsigned 32 bit
+
 typedef bool BOOL;                   // BOOLEAN VALUE!!!!
 
 typedef long s64;
+typedef int s32;
+typedef unsigned int u32;
 typedef short s16;
 typedef signed char  s8;
 
 typedef const long sc64;            // Read Only
+typedef const int sc32;             // Read Only
+typedef const unsigned int uc32;    // Read Only
 typedef const short sc16;           // Read Only
 typedef const char sc8;             // Read Only
 
