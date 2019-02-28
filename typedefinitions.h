@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdbool.h>
 
 
 #ifndef typedefinitions_h
@@ -35,5 +36,5 @@ typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
 
 void cprint(void);
 void printBits(int size, void const * const ptr);//assumes little endian
-
+unsigned char *gen_rdm_bytestream (size_t num_bytes);
 #endif                              // typedefinitions.h

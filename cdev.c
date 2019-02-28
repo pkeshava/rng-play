@@ -10,13 +10,18 @@ This code is used as a first step dive into the world of true random number gene
 
 int main(){
 
-  int seed = 5556;
-  srand(seed);
+  //int seed = 5556;
+  //srand(seed);
+//
+  srand((unsigned int) time (NULL));
   int intrand = rand();
   int *rand_p = &intrand;
   printBits(sizeof(intrand), &intrand);
 
-
+  unsigned char* bstream;
+  bstream = gen_rdm_bytestream(4);
+  printf("input: %s\n", bstream);
+  free(bstream);
   // open file and clear it's contents
   // std::ofstream myfile;
   // myfile.open("bitstream.txt", std::ofstream::out | std::ofstream::trunc);

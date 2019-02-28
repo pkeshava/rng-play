@@ -41,3 +41,18 @@ void printBits(int size, void const * const ptr)
     puts("");
 
 }
+
+unsigned char *gen_rdm_bytestream (size_t num_bytes)
+{
+  unsigned char *stream;
+  stream = (char*) malloc (num_bytes + 1);
+  if (stream==NULL) exit (1);
+  size_t i;
+
+  for (i = 0; i < num_bytes; i++)
+  {
+    stream[i] = rand ();
+  }
+
+  return stream;
+}
