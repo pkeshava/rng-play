@@ -34,16 +34,15 @@ typedef UCHAR  u8;                  // Read Only
 
 typedef const ULONG uc64;           // Read Only
 typedef const USHORT uc16;          // Read Only
-typedef const USHORT uc8;           // Read Only
+typedef const UCHAR uc8;           // Read Only
 
 // These are not strictly necessary but might be useful
 typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
 typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
 typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
 
-void cprint(void);
 void printBits(size_t size, void const * const ptr);//assumes little endian
 u8* gen_rdm_bytestream (size_t nBytes);
-void writeToFile(unsigned const char* uc8inputBytes, size_t nBytes);
+void writeToFile(uc8* uc8inputBytes, size_t nBytes);
 u8* readFromFile(size_t nBytes);
 #endif                              // typedefinitions.h

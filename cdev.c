@@ -10,10 +10,7 @@ This code is used as a first step dive into the world of true random number gene
 
 int main(){
 
-  //int seed = 238;
-  //srand(seed);
   srand((unsigned int) time (NULL));
-
   u8* bstream;
   size_t nBytes = 10;
   printf("\n");
@@ -31,41 +28,19 @@ int main(){
 
   for(int i = 0; i<nBytes; i++)
     printf("%u ", buffer[i]); // prints a series of bytes.. this now should print exactly the same as ascii numbers only properly split up
-
   printf("\n\n");
   printBits(nBytes, buffer); // NOTE if this is done without the dynamic memory allocation then you need to have &buffer
   printf("\n");
   free(bstream);
   free(buffer);
 
-
 return 0;
 }
 
-
-
-/*
-------- sample code IGNORE----------------------------------------------------
-
-//cprint();
-//cplusprint();
-//u32 u32test = 0x0000FFFF;
-//printf("Test unsigned long is: %lu\n", u32test);
-
-
-typedef struct modulation {
-   char* QPSK;
-   int q;
-} mod;
-
-int x[]= {1,2,3,4,5};
-printf("Hello Emacs World!\n");
-int y = x[2];
-printf("y = %d \n", y);
-int z = 5;
-int dild = 2;
-mod mod1 = {"QPSK",256};
-printf("The modulation type is %s, %d \n", mod1.QPSK, mod1.q);
-
--------------------------------------------------------------------------------
+/* Tasks Remaining
+    - Create boolean algebra table and algorithm for biasing the bitstream with a percentage of 1's
+    - Take command line input for number of bytes and the percentage of ones... do calculations to determine if possible and output error message if required
+    - python analysis of data file to calculate autocorrelation, cross correlation shannon entropy etc.
+    - calculate total runtime of the program
+    - adjust makefile 
 */
