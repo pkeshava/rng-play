@@ -14,7 +14,7 @@ int main(){
   //srand(seed);
   srand((unsigned int) time (NULL));
 
-  unsigned char* bstream;
+  u8* bstream;
   size_t nBytes = 10;
   printf("\n");
   // Generate random bits
@@ -26,7 +26,7 @@ int main(){
   printf("\n\n");
   // write to a binary file and then read back to check it was done correctly
   writeToFile(bstream, nBytes);
-  unsigned char* buffer;
+  u8* buffer;
   buffer = readFromFile(nBytes);
 
   for(int i = 0; i<nBytes; i++)

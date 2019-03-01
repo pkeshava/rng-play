@@ -42,7 +42,7 @@ void printBits(size_t size, void const * const ptr)
 
 }
 
-unsigned char *gen_rdm_bytestream (size_t nBytes)
+u8* gen_rdm_bytestream (size_t nBytes)
 {
   unsigned char *asciiBstream;
   asciiBstream = (char*) malloc (nBytes + 1);
@@ -61,7 +61,7 @@ unsigned char *gen_rdm_bytestream (size_t nBytes)
 void writeToFile(unsigned const char* uc8inputBytes, size_t nBytes)//UPDATE LATER TO RECEIVE FILE POINTER
 {
   size_t size = nBytes;
-  unsigned char* bits;
+  u8* bits;
   bits = uc8inputBytes;
   FILE *write_ptr;
   write_ptr = fopen("test.bin","wb");  // w for write, b for binary
@@ -73,7 +73,7 @@ void writeToFile(unsigned const char* uc8inputBytes, size_t nBytes)//UPDATE LATE
   fclose(write_ptr);
 }
 
-unsigned char* readFromFile(size_t nBytes)//UPDATE LATER TO RECEIVE FILE POINTER AND BUFFER SIZE
+u8* readFromFile(size_t nBytes)//UPDATE LATER TO RECEIVE FILE POINTER AND BUFFER SIZE
 {
   size_t size = nBytes;
   unsigned char* buffer;
