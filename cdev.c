@@ -11,11 +11,12 @@ This code is used as a first step dive into the world of true random number gene
 
 int main(int argc, char* argv[]){
 
-  int nBytes;
+  int nBytes = 0;
   int counter;
   printf("Program Name Is: %s\n",argv[0]);
+  /* First check to see how many arguments there are. Regardless of what combination is used there should be an off number (including program name)*/
   if(argc == 1){
-    printf("\n\nNo extra command line arguments passed other than the program name.\nTherefore, there are 10 total random bytes generated and the probability of 1's and 0's is equal. \nConversely, you can generate the number of bytes required and the probability bias for number of 1's with command line arguments. \nFor example, type in your command prompt:\n'./cdev -N 512 -p 0.35'");
+    printf("\n\nNo extra command line arguments passed other than the program name.\nTherefore, there the defualt total of random bytes generated is set to 10 and the probability of 1's and 0's is equal. \nConversely, you can generate the number of bytes required and the probability bias for number of 1's with command line arguments. \nFor example, type in your command prompt:\n'./cdev -N 512 -p 0.35'");
     nBytes = 10;
   }
   else if(argc > 5 || argc %2 == 0)
@@ -27,7 +28,6 @@ int main(int argc, char* argv[]){
 
   else if (argc > 1 && argc < 6)
   {
-    //test for now
     int i;
     for (i = 1; i < argc; i++)  /* Skip argv[0] (program name). */
     {
@@ -42,10 +42,13 @@ int main(int argc, char* argv[]){
         printf("Number of random bytes generated is %d\n", nBytes);
       }
       if (strcmp(argv[i], "-p") == 0){
+        if (nBytes == 0){
+          nBytes = 10;
+        }
         char *p2;
         long conv2 = strtol(argv[i+1], &p2, 10);
         if (errno != 0 || *p2 != '\0' || conv2 > INT_MAX) {
-          printf("Failed: please give a number after '-p'\n");
+          printf("\nFailed: please give a number after '-p'\n\n");
           exit(1);
         }
         else
