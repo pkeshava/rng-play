@@ -26,13 +26,11 @@ Explain how to run the automated tests for this system
 
 ## Built With
 
-[comment]:(* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds)
+[comment]: # (blank)
 
 ## Versioning
 
-[comment]: #(We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).)
+[comment]: # (We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).)
 
 ## Authors
 
