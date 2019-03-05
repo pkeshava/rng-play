@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 //assumes little endian
-void printBits(size_t size, void const * const ptr){
+void printBits(int size, void const * const ptr){
   u8 *b = (u8*) ptr;
   char byte[8];
   int i, j;
@@ -26,7 +26,7 @@ void printBits(size_t size, void const * const ptr){
 
 }
 
-u8* gen_rdm_bytestream (size_t nBytes){
+u8* gen_rdm_bytestream (int nBytes){
   unsigned char *asciiBstream;
   asciiBstream = (char*) malloc (nBytes + 1);
   if (asciiBstream==NULL) exit (1);
@@ -42,8 +42,8 @@ u8* gen_rdm_bytestream (size_t nBytes){
 }
 
 //UPDATE LATER TO RECEIVE FILE POINTER
-void writeToFile(uc8* uc8inputBytes, size_t nBytes){
-  size_t size = nBytes;
+void writeToFile(uc8* uc8inputBytes, int nBytes){
+  int size = nBytes;
   u8* bits;
   bits = uc8inputBytes;
   FILE *write_ptr;
@@ -57,8 +57,8 @@ void writeToFile(uc8* uc8inputBytes, size_t nBytes){
 }
 
 //UPDATE LATER TO RECEIVE FILE POINTER
-u8* readFromFile(size_t nBytes){
-  size_t size = nBytes;
+u8* readFromFile(int nBytes){
+  int size = nBytes;
   u8* buffer;
   buffer = (char*) malloc (nBytes + 1);
   if (buffer==NULL) exit (1);

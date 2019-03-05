@@ -41,8 +41,8 @@ typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
 typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
 typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
 
-void printBits(size_t size, void const * const ptr);//assumes little endian
-u8* gen_rdm_bytestream (size_t nBytes);
-void writeToFile(uc8* uc8inputBytes, size_t nBytes);
-u8* readFromFile(size_t nBytes);
+void printBits(int size, void const * const ptr);//assumes little endian
+u8* gen_rdm_bytestream (int nBytes);
+void writeToFile(uc8* uc8inputBytes, int nBytes);
+u8* readFromFile(int nBytes);
 #endif                              // typedefinitions.h
