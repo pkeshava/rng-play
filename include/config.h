@@ -9,5 +9,7 @@
 #include <errno.h> // for errno
 #include <string.h>
 #include <math.h>
+#include <time.h>
+
 
 #endif

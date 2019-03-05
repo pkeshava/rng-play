@@ -1,17 +1,12 @@
 /* © Pouyan Keshavarzian 2019
 PhD Student EPFL
-This code is used as a first step dive into the world of true random number generation
 
+This code is used as a first step dive into the world of true random number generation
 */
 
 #include "config.h"
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
-#include <math.h>
 
 int main(int argc, char** argv){
-
 
   int nBytes;
   float prob1s;

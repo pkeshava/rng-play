@@ -1,5 +1,4 @@
-#include <stdlib.h>
-#include <stdbool.h>
+#include "config.h"
 
 
 #ifndef typedefinitions_h
