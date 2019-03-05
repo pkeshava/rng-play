@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include "typedefinitions.h"
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> // for strtol
+#include <limits.h> // for INT_MAX
+#include <errno.h> // for errno
 
 #endif
