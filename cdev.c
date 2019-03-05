@@ -8,10 +8,12 @@ This code is used as a first step dive into the world of true random number gene
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <math.h>
 
 int main(int argc, char* argv[]){
 
   int nBytes = 0;
+  double prob1s = 0.5;
   int counter;
   printf("Program Name Is: %s\n",argv[0]);
   /* First check to see how many arguments there are. Regardless of what combination is used there should be an off number (including program name)*/
@@ -26,6 +28,7 @@ int main(int argc, char* argv[]){
     exit(1);
   }
 
+  /*If a non default and correct option sequence is entered then loop through the vector and extract numBytes and probability*/
   else if (argc > 1 && argc < 6)
   {
     int i;
@@ -45,14 +48,15 @@ int main(int argc, char* argv[]){
         if (nBytes == 0){
           nBytes = 10;
         }
-        char *p2;
-        long conv2 = strtol(argv[i+1], &p2, 10);
-        if (errno != 0 || *p2 != '\0' || conv2 > INT_MAX) {
-          printf("\nFailed: please give a number after '-p'\n\n");
+        float conv2 = atof(argv[i+1]);
+        if (conv2 < 0.05 || conv2 > 0.45) {
+          printf("\nFailed: please give a percentage of 1's in the biased random sequence between 0.05 and 0.45 in 0.05 increments i.e.\n '-p 0.4'\n\n");
           exit(1);
         }
-        else
-          printf("Sample probability is: ");
+        else{
+          prob1s = conv2;
+          printf("Sample probability is: %f", conv2);
+        }
       }
       //else
         //nBytes = 8;
