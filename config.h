@@ -7,5 +7,7 @@
 #include <stdlib.h> // for strtol
 #include <limits.h> // for INT_MAX
 #include <errno.h> // for errno
+#include <string.h>
+#include <math.h>
 
 #endif

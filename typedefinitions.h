@@ -41,6 +41,16 @@ typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
 typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
 typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
 
+typedef struct
+{
+  int nBytes;
+  float prob1s;
+  int argc;
+  char** argv;
+} stateVariables;
+
+stateVariables determineSequence(stateVariables stateVars);
+
 void printBits(int size, void const * const ptr);//assumes little endian
 u8* gen_rdm_bytestream (int nBytes);
 void writeToFile(uc8* uc8inputBytes, int nBytes);

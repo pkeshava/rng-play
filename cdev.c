@@ -10,61 +10,17 @@ This code is used as a first step dive into the world of true random number gene
 #include <string.h>
 #include <math.h>
 
-int main(int argc, char* argv[]){
+int main(int argc, char** argv){
 
-  int nBytes = 0;
-  double prob1s = 0.5;
-  int counter;
-  printf("Program Name Is: %s\n",argv[0]);
-  /* First check to see how many arguments there are. Regardless of what combination is used there should be an off number (including program name)*/
-  if(argc == 1){
-    printf("\n\nNo extra command line arguments passed other than the program name.\nTherefore, there the defualt total of random bytes generated is set to 10 and the probability of 1's and 0's is equal. \nConversely, you can generate the number of bytes required and the probability bias for number of 1's with command line arguments. \nFor example, type in your command prompt:\n'./cdev -N 512 -p 0.35'");
-    nBytes = 10;
-  }
-  else if(argc > 5 || argc %2 == 0)
-  {
-    //check to see if too many arguments given
-    printf("\nFailed: Incorrect number of arguments passed.\nPlease specify total number of Bytes generated with option -N and the probability bias for the number of 1's (between 0 and 0.50) with option -p\ni.e type in your command prompt:\n'./cdev -N 512 -p 0.35'\n\n");
-    exit(1);
-  }
 
-  /*If a non default and correct option sequence is entered then loop through the vector and extract numBytes and probability*/
-  else if (argc > 1 && argc < 6)
-  {
-    int i;
-    for (i = 1; i < argc; i++)  /* Skip argv[0] (program name). */
-    {
-      if (strcmp(argv[i], "-N") == 0){
-        char *p;
-        long conv = strtol(argv[i+1], &p, 10);
-        if (errno != 0 || *p != '\0' || conv > INT_MAX || conv < 0) {
-          printf("\nFailed: please give a number after '-N' that is greater than zero and less than INT_MAX\n\n");
-          exit(1);
-        }
-        nBytes = conv;
-        printf("Number of random bytes generated is %d\n", nBytes);
-      }
-      if (strcmp(argv[i], "-p") == 0){
-        if (nBytes == 0){
-          nBytes = 10;
-        }
-        float conv2 = atof(argv[i+1]);
-        if (conv2 < 0.05 || conv2 > 0.45) {
-          printf("\nFailed: please give a percentage of 1's in the biased random sequence between 0.05 and 0.45 in 0.05 increments i.e.\n '-p 0.4'\n\n");
-          exit(1);
-        }
-        else{
-          prob1s = conv2;
-          printf("Sample probability is: %f", conv2);
-        }
-      }
-      //else
-        //nBytes = 8;
-    }
-  }
-  else {
-    nBytes = 10;  /* if no value is given then */
-  }
+  int nBytes;
+  float prob1s;
+
+   stateVariables stateVars = {.nBytes = 0, .argc = argc, .prob1s = 0.5, .argv = argv};
+
+  stateVars = determineSequence(stateVars);
+  nBytes = stateVars.nBytes;
+  prob1s = stateVars.prob1s;
 
   srand((unsigned int) time (NULL));
   u8* bstream;
@@ -83,9 +39,11 @@ int main(int argc, char* argv[]){
 
   for(int i = 0; i<nBytes; i++)
     printf("%u ", buffer[i]); // prints a series of bytes.. this now should print exactly the same as ascii numbers only properly split up
+
   printf("\n\n");
   printBits(nBytes, buffer); // NOTE if this is done without the dynamic memory allocation then you need to have &buffer
   printf("\n");
+
   free(bstream);
   free(buffer);
 
