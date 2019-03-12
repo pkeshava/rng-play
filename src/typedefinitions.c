@@ -106,7 +106,7 @@ stateVariables determineSequence(stateVariables stateVars){
           state.nBytes = 10;
         }
         float conv2 = atof(state.argv[i+1]);
-        if (conv2 < 0.05 || conv2 > 0.45) {
+        if (conv2 < 0.01 || conv2 > 0.99) {
           printf("\nFailed: please give a percentage of 1's in the biased random sequence between 0.05 and 0.45 in 0.05 increments i.e.\n '-p 0.4'\n\n");
           exit(1);
         }
@@ -135,6 +135,8 @@ char bitT = 0;
 asciiBstream = (char*) malloc (nBytes + 1);
 if (asciiBstream==NULL) exit (1);
 
+srand((unsigned int) time (NULL)); // create a seed by reading epoch time
+
 for (int i = 0; i < nBytes; i++)
 {
   asciiBstream[i] = 0;
@@ -159,28 +161,6 @@ for (int i = 0; i < nBytes; i++)
     printf ("fRnd: %f, fProb: %f\n",fRnd,fProb);
   }
 }
-// int aSize = nBytes+1;
-// char bit[aSize];
-// for (int i = 0; i < nBytes; i++){
-//   bit[i] = 0;
-//   asciiBstream[i]=0;
-// }
-// bit[nBytes]='\0';
-// asciiBstream[nBytes]='\0';
-//
-// for (int i = 0; i < nBits; i++)
-// {
-//     fRnd = (float) rand() / nextafter(RAND_MAX, DBL_MAX);
-//     if (fProb <= fRnd)
-//       bit = 1 << i;
-//     else
-//       bit = 0 << i;
-//     asciiBstream = asciiBstream | bit;
-//     printf ("fRnd: %f, fProb: %f\n",fRnd,fProb);
-//
-// }
-
-
 
 asciiBstream[nBytes]='\0';
 
