@@ -70,9 +70,7 @@ u8* readFromFile(int nBytes){
   return buffer;
 }
 
-
-stateVariables determineSequence(stateVariables stateVars)
-{
+stateVariables determineSequence(stateVariables stateVars){
   stateVariables state = stateVars;
   printf("Program Name Is: %s\n",state.argv[0]);
   /* First check to see how many arguments there are. Regardless of what combination is used there should be an off number (including program name)*/
@@ -123,4 +121,70 @@ stateVariables determineSequence(stateVariables stateVars)
     state.nBytes = 10;  /* if no value is given then */
 
   return state;
+}
+
+u8* pu8GenBiasedRdmByteStream (int nBytes, float p){
+
+float fRnd;
+float fProb = p;
+char bit = 0;
+unsigned char *asciiBstream;
+//int nBits = 8*nBytes;
+char byte[nBytes];
+char bitT = 0;
+asciiBstream = (char*) malloc (nBytes + 1);
+if (asciiBstream==NULL) exit (1);
+
+for (int i = 0; i < nBytes; i++)
+{
+  asciiBstream[i] = 0;
+  bit = 0;
+  byte[i] = 0;
+  bitT = 0;
+  for (int j = 0; j < 8; j++)
+  {
+    fRnd = (float) rand() / nextafter(RAND_MAX, DBL_MAX);
+    if (fProb < fRnd){
+      bitT = 0 << j;
+      bit = bit | bitT;
+      byte[i] = bit;
+    }
+    else
+    {
+      bitT = 1 << j;
+      bit = bit | bitT;
+      byte[i] = bit;
+    }
+    asciiBstream[i] = byte[i];
+    printf ("fRnd: %f, fProb: %f\n",fRnd,fProb);
+  }
+}
+// int aSize = nBytes+1;
+// char bit[aSize];
+// for (int i = 0; i < nBytes; i++){
+//   bit[i] = 0;
+//   asciiBstream[i]=0;
+// }
+// bit[nBytes]='\0';
+// asciiBstream[nBytes]='\0';
+//
+// for (int i = 0; i < nBits; i++)
+// {
+//     fRnd = (float) rand() / nextafter(RAND_MAX, DBL_MAX);
+//     if (fProb <= fRnd)
+//       bit = 1 << i;
+//     else
+//       bit = 0 << i;
+//     asciiBstream = asciiBstream | bit;
+//     printf ("fRnd: %f, fProb: %f\n",fRnd,fProb);
+//
+// }
+
+
+
+asciiBstream[nBytes]='\0';
+
+return asciiBstream;
+
+
 }

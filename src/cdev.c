@@ -23,7 +23,9 @@ int main(int argc, char** argv){
   u8* pu8Bstream;
   printf("\n");
   // Generate random bits
-  pu8Bstream = pu8GenRdmByteStream(nBytes); // also prints bytes as ascii characters
+  //pu8Bstream = pu8GenRdmByteStream(nBytes); // also prints bytes as ascii characters
+  pu8Bstream = pu8GenBiasedRdmByteStream(nBytes, stateVars.prob1s); // get biasedStream
+
   printf("\n");
 
   for(int i = 0; i<nBytes; i++)
@@ -45,11 +47,6 @@ int main(int argc, char** argv){
   free(pu8Bstream);
   free(buffer);
 
-  printf("test: %d\n\n", RAND_MAX);
-  double testRnd = rand()%4;
-  double normalized = (double) rand() / nextafter(RAND_MAX, DBL_MAX);
-  printf("test: %f\n\n", testRnd);
-  printf("test: %f\n\n", normalized);
 
 
 return 0;

@@ -54,4 +54,5 @@ void printBits(int size, void const * const ptr);//assumes little endian
 u8* pu8GenRdmByteStream (int nBytes);
 void writeToFile(uc8* puc8inputBytes, int nBytes);
 u8* readFromFile(int nBytes);
+u8* pu8GenBiasedRdmByteStream (int nBytes, float p);
 #endif                              // typedefinitions.h
