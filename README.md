@@ -54,3 +54,5 @@ For information on string error handling go [check](https://www.tutorialspoint.c
 For information on handling command line arguments in c [check](https://www.geeksforgeeks.org/command-line-arguments-in-c-cpp/)
 
 [and](http://courses.cms.caltech.edu/cs11/material/c/mike/misc/cmdline_args.html)
+
+For information regarding the limiations of using modulo as a way of getting a uniform random distribution [check](https://www.geeksforgeeks.org/command-line-arguments-in-c-cpp/)
