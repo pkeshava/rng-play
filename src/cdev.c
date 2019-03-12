@@ -20,17 +20,17 @@ int main(int argc, char** argv){
 
 
   srand((unsigned int) time (NULL)); // create a seed by reading epoch time
-  u8* bstream;
+  u8* pu8Bstream;
   printf("\n");
   // Generate random bits
-  bstream = gen_rdm_bytestream(nBytes); // also prints bytes as ascii characters
+  pu8Bstream = pu8GenRdmByteStream(nBytes); // also prints bytes as ascii characters
   printf("\n");
 
   for(int i = 0; i<nBytes; i++)
-    printf("%u ", bstream[i]); // prints a series of bytes as the decimal representation of the ascii byte i.e 122 104 120 etc..
+    printf("%u ", pu8Bstream[i]); // prints a series of bytes as the decimal representation of the ascii byte i.e 122 104 120 etc..
   printf("\n\n");
   // write to a binary file and then read back to check it was done correctly
-  writeToFile(bstream, nBytes);
+  writeToFile(pu8Bstream, nBytes);
   u8* buffer;
   buffer = readFromFile(nBytes);
 
@@ -42,7 +42,7 @@ int main(int argc, char** argv){
   printBits(nBytes, buffer); // NOTE if this is done without the dynamic memory allocation then you need to have &buffer
   printf("\n");
 
-  free(bstream);
+  free(pu8Bstream);
   free(buffer);
 
   printf("test: %d\n\n", RAND_MAX);

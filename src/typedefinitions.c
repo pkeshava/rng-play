@@ -26,7 +26,7 @@ void printBits(int size, void const * const ptr){
 
 }
 
-u8* gen_rdm_bytestream (int nBytes){
+u8* pu8GenRdmByteStream (int nBytes){
   unsigned char *asciiBstream;
   asciiBstream = (char*) malloc (nBytes + 1);
   if (asciiBstream==NULL) exit (1);
@@ -42,10 +42,10 @@ u8* gen_rdm_bytestream (int nBytes){
 }
 
 //UPDATE LATER TO RECEIVE FILE POINTER
-void writeToFile(uc8* uc8inputBytes, int nBytes){
+void writeToFile(uc8* puc8inputBytes, int nBytes){
   int size = nBytes;
   u8* bits;
-  bits = uc8inputBytes;
+  bits = puc8inputBytes;
   FILE *write_ptr;
   write_ptr = fopen("test.bin","wb");  // w for write, b for binary
   if (write_ptr == NULL)

@@ -51,7 +51,7 @@ typedef struct
 stateVariables determineSequence(stateVariables stateVars);
 
 void printBits(int size, void const * const ptr);//assumes little endian
-u8* gen_rdm_bytestream (int nBytes);
-void writeToFile(uc8* uc8inputBytes, int nBytes);
+u8* pu8GenRdmByteStream (int nBytes);
+void writeToFile(uc8* puc8inputBytes, int nBytes);
 u8* readFromFile(int nBytes);
 #endif                              // typedefinitions.h
