@@ -8,27 +8,23 @@
 #include <stdlib.h>
 
 //assumes little endian
-void printBits(int size, void const * const ptr){
+void printBits(int nBytes, void const * const ptr){
   u8 *b = (u8*) ptr;
   char byte[8];
-  int i, j;
-
-  for (i=size-1;i>=0;i--)
+  for (int i=nBytes-1;i>=0;i--)
   {
-    for (j=7;j>=0;j--)
+    for (int j=7;j>=0;j--)
     {
       byte[j] = (b[i] >> j) & 1;
       printf("%u", byte[j]);
     }
-
   }
   puts("");
-
 }
 
-u8* pu8GenRdmByteStream (int nBytes){
-  unsigned char *asciiBstream;
-  asciiBstream = (char*) malloc (nBytes + 1);
+u8* pu8GenRdmAsciiByteStream (int nBytes){
+  u8 *asciiBstream;
+  asciiBstream = (u8*) malloc (nBytes + 1);
   if (asciiBstream==NULL) exit (1);
   size_t i;
 
@@ -43,29 +39,25 @@ u8* pu8GenRdmByteStream (int nBytes){
 
 //UPDATE LATER TO RECEIVE FILE POINTER
 void writeToFile(uc8* puc8inputBytes, int nBytes){
-  int size = nBytes;
-  u8* bits;
-  bits = puc8inputBytes;
   FILE *write_ptr;
   write_ptr = fopen("test.bin","wb");  // w for write, b for binary
   if (write_ptr == NULL)
   {
     perror("Failed: ");
   }
-  fwrite(bits,size,1,write_ptr);
+  fwrite(puc8inputBytes,nBytes,1,write_ptr);
   fclose(write_ptr);
 }
 
 //UPDATE LATER TO RECEIVE FILE POINTER
 u8* readFromFile(int nBytes){
-  int size = nBytes;
   u8* buffer;
-  buffer = (char*) malloc (nBytes + 1);
+  buffer = (u8*) malloc (nBytes + 1);
   if (buffer==NULL) exit (1);
   FILE *ptr;
   ptr = fopen("test.bin","rb");  // r for read, b for binary
-  fread(buffer,size,1,ptr);
-  buffer[size]='\0';
+  fread(buffer,nBytes,1,ptr);
+  buffer[nBytes]='\0';
   fclose(ptr);
   return buffer;
 }
@@ -123,48 +115,44 @@ stateVariables determineSequence(stateVariables stateVars){
   return state;
 }
 
-u8* pu8GenBiasedRdmByteStream (int nBytes, float p){
+u8* pu8GenBiasedRdmBitStream (int nBytes, float p){
 
-float fRnd;
-float fProb = p;
-char bit = 0;
-unsigned char *asciiBstream;
-//int nBits = 8*nBytes;
-char byte[nBytes];
-char bitT = 0;
-asciiBstream = (char*) malloc (nBytes + 1);
-if (asciiBstream==NULL) exit (1);
-
-srand((unsigned int) time (NULL)); // create a seed by reading epoch time
-
-for (int i = 0; i < nBytes; i++)
-{
-  asciiBstream[i] = 0;
-  bit = 0;
-  byte[i] = 0;
-  bitT = 0;
-  for (int j = 0; j < 8; j++)
+  // put this into a struct.
+  float fRnd;
+  u8 bitMask = 0;
+  u8 *asciiBstream;
+  u8 byte[nBytes];
+  u8 bit = 0;
+  asciiBstream = (u8*) malloc (nBytes + 1);
+  if (asciiBstream==NULL) exit (1);
+  srand((unsigned int) time (NULL)); // create a seed by reading epoch time
+  for (int i = 0; i < nBytes; i++)
   {
-    fRnd = (float) rand() / nextafter(RAND_MAX, DBL_MAX);
-    if (fProb < fRnd){
-      bitT = 0 << j;
-      bit = bit | bitT;
-      byte[i] = bit;
-    }
-    else
+    asciiBstream[i] = 0;
+    bitMask = 0;
+    byte[i] = 0;
+    bit = 0;
+    for (int j = 0; j < 8; j++)
     {
-      bitT = 1 << j;
-      bit = bit | bitT;
-      byte[i] = bit;
+      fRnd = (float) rand() / nextafter(RAND_MAX, DBL_MAX);
+      if (p < fRnd){
+        // NOTE should it be p <=?
+        bit = 0 << j;
+        bitMask = bitMask | bit;
+        byte[i] = bitMask;
+      }
+      else
+      {
+        bit = 1 << j;
+        bitMask = bitMask | bit;
+        byte[i] = bitMask;
+      }
+      asciiBstream[i] = byte[i];
+      //printf ("fRnd: %f, p: %f\n",fRnd,p);
     }
-    asciiBstream[i] = byte[i];
-    printf ("fRnd: %f, fProb: %f\n",fRnd,fProb);
   }
-}
+  asciiBstream[nBytes]='\0';
 
-asciiBstream[nBytes]='\0';
-
-return asciiBstream;
-
+  return asciiBstream;
 
 }
