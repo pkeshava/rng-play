@@ -24,7 +24,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ)
+	rm -f *.o $(TARGET)
 
 # CC=gcc
 # CFLAGS=$(foreach includedir,$(program_INCLUDE_DIRS),-I$(includedir))
